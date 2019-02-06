@@ -23,7 +23,7 @@ public class BlockLandiaPlanks extends Block implements IMetaBlockName {
 		this.setHardness(2.0f);
 		this.setSoundType(SoundType.WOOD);
 		
-		this.setUnlocalizedName("landia_planks").setRegistryName("landia_planks");
+		this.setTranslationKey("landia_planks").setRegistryName("landia_planks");
 	}
 	
 	@Override

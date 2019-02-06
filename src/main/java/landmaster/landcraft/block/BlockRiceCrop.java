@@ -7,7 +7,7 @@ import net.minecraft.item.*;
 public class BlockRiceCrop extends BlockCrops {
 	public BlockRiceCrop() {
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("rice_crop").setRegistryName("rice_crop");
+		this.setTranslationKey("rice_crop").setRegistryName("rice_crop");
 	}
 	
 	@Override

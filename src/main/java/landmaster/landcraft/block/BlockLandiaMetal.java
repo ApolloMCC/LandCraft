@@ -22,7 +22,7 @@ public class BlockLandiaMetal extends Block implements IMetaBlockName {
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, LandiaOreType.KELLINE));
 		setHardness(5f);
 		setHarvestLevel("pickaxe", -1);
-		this.setUnlocalizedName("landia_metal").setRegistryName("landia_metal");
+		this.setTranslationKey("landia_metal").setRegistryName("landia_metal");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

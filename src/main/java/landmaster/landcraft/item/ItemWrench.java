@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.*;
 @Optional.Interface(iface = "cofh.api.item.IToolHammer", modid = "cofhcore")
 public class ItemWrench extends Item implements IToolHammer {
 	public ItemWrench() {
-		this.setUnlocalizedName("item_wrench").setRegistryName("item_wrench");
+		this.setTranslationKey("item_wrench").setRegistryName("item_wrench");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

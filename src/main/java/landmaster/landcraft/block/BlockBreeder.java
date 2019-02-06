@@ -21,7 +21,7 @@ public class BlockBreeder extends BlockMachineBase {
 		this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName("breeder").setRegistryName("breeder");
+        this.setTranslationKey("breeder").setRegistryName("breeder");
         this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	@Override

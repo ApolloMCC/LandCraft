@@ -29,7 +29,7 @@ public class BlockLandiaTower extends Block {
 		this.setHarvestLevel("pickaxe", 8);
 		this.setCreativeTab(LandCraftContent.creativeTab);
 		this.setSoundType(SoundType.STONE);
-		this.setUnlocalizedName("landia_tower").setRegistryName("landia_tower");
+		this.setTranslationKey("landia_tower").setRegistryName("landia_tower");
 	}
 	
 	public static final int LANDIA_CHECK_MSG_SIZE = 7;

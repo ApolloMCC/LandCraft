@@ -35,7 +35,7 @@ public class BlockLandiaPortalMarker extends Block {
 		List<TELandiaPortalMarker> tiles = Utils.getTileEntitiesWithinAABB(
 				event.getEntity().getEntityWorld(), TELandiaPortalMarker.class,
 				Utils.AABBfromVecs(event.getEntity().getPositionVector().subtract(4, 4, 4),
-						event.getEntity().getPositionVector().addVector(4, 6, 4)));
+						event.getEntity().getPositionVector().add(4, 6, 4)));
 		
 		for (TELandiaPortalMarker tile: tiles) {
 			tile.getWorld().setBlockState(tile.getPos(),
@@ -50,7 +50,7 @@ public class BlockLandiaPortalMarker extends Block {
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
         this.setDefaultState(blockState.getBaseState().withProperty(ACTIVATED, false));
-        this.setUnlocalizedName("landia_portal_marker").setRegistryName("landia_portal_marker");
+        this.setTranslationKey("landia_portal_marker").setRegistryName("landia_portal_marker");
         MinecraftForge.EVENT_BUS.register(this);
         this.setCreativeTab(LandCraftContent.creativeTab);
 	}

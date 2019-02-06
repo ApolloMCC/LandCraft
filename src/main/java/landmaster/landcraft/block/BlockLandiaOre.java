@@ -25,7 +25,7 @@ public class BlockLandiaOre extends Block implements IMetaBlockName {
 		for (LandiaOreType type: LandiaOreType.values()) {
 			setHarvestLevel("pickaxe", type.getLevel()-1, getDefaultState().withProperty(TYPE, type));
 		}
-		this.setUnlocalizedName("landia_ore").setRegistryName("landia_ore");
+		this.setTranslationKey("landia_ore").setRegistryName("landia_ore");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

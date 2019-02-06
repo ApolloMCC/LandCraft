@@ -2,123 +2,113 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            name = "forge"
+            name = "minecraftforge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
     }
+
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath("net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT")
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
+apply plugin: "java"
+apply plugin: "net.minecraftforge.gradle.forge"
+apply plugin: "signing"
 
-version = "2.2.1.2"
-group= "landmaster.landcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = "landmaster"
 archivesBaseName = "landcraft"
+version = "2.2.1.2"
 
-sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = "1.8"
+minecraft {
+    version = "1.12.2-14.23.5.2768"
+    runDir = "run"
+    mappings = "stable_39"
+    makeObfSourceJar = false
+}
+
+configurations {
+    provided {
+        compile.extendsFrom(provided)
+    }
 }
 
 repositories {
-	maven {
-		// location of the maven that hosts JEI files
-		url = "http://dvs1.progwml6.com/files/maven"
-	}
-	maven {
-		// location of a maven mirror for JEI files, as a fallback
-		url = "modmaven.k-4u.nl"
-	}
-	maven {
-        name = "CoFH Maven"
-        url = "http://maven.covers1624.net"
+    jcenter()
+    maven {
+        name = "progwml6"
+        url = "http://dvs1.progwml6.com/files/maven"
     }
-}
-
-minecraft {
-    version = "1.12.2-14.23.1.2604"
-    runDir = "run"
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20180127"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    maven {
+        name = "covers1624"
+        url = "https://maven.covers1624.net"
+    }
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    
-    deobfCompile "mezz.jei:jei_1.12:4.7.1.69:api"
-    runtime "mezz.jei:jei_1.12:4.7.1.69"
-    deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
-    deobfCompile "cofh:CoFHCore:1.12-4.3.0.3:universal"
-}
-
-import org.apache.tools.ant.filters.ReplaceTokens
-task replaceVersion(type: Copy) {
-	from 'src/meta/java'
-	into "$buildDir/__generated_src"
-	filter(ReplaceTokens, tokens: [
-		'VERSION': project.version
-	])
-}
-
-compileJava.source replaceVersion.outputs.files
-compileJava.dependsOn replaceVersion
-
-processResources
-{
-	exclude '**/*.xcf'
-	
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+    provided("cofh:CoFHCore:1.12-4.3.0.3:deobf")
+    provided("cofh:RedstoneFlux:1.12-2.0.0.1:deobf")
+    provided("mezz.jei:jei_1.12:4.7.1.69")
 }
 
 jar {
     manifest {
-	    attributes 'FMLAT': 'landcraft_at.cfg'
-	}
+        attributes("FMLAT": "landcraft_at.cfg")
+    }
+
+    from {
+        (configurations.compile - configurations.provided).findAll({
+            it.isDirectory() || it.name.endsWith(".jar")
+        }).collect({
+            it.isDirectory() ? it : zipTree(it)
+        })
+    }
+
+    exclude("dummyThing")
+    exclude("**/*.xcf")
+}
+
+processResources {
+    from("LICENSE")
+    rename("LICENSE", "LICENSE-" + archivesBaseName)
+
+    from (sourceSets.main.resources.srcDirs) {
+        include("mcmod.info")
+        expand("version": version, "mcversion": minecraft.version)
+    }
+}
+
+task signJar {
+    doFirst {
+        if (!project.hasProperty("signing.keyStorePath") || !project.hasProperty("signing.secretKeyRingFile")) {
+            project.logger.warn("========== [WARNING] ==========")
+            project.logger.warn("")
+            project.logger.warn("   This build is not signed!   ")
+            project.logger.warn("")
+            project.logger.warn("========== [WARNING] ==========")
+            throw new StopExecutionException()
+        }
+    }
+
+    doLast {
+        configurations.archives.allArtifacts.files.each {
+            ant.signjar(
+                jar: it,
+                alias: project.property("signing.alias"),
+                storepass: project.property("signing.keyStorePassword"),
+                keystore: project.property("signing.keyStorePath"),
+                keypass: project.property("signing.keyStorePassword"),
+                preservelastmodified: project.property("signing.preserveLastModified"),
+                tsaurl: project.property("signing.timestampAuthority"),
+                digestalg: project.property("signing.digestAlgorithm")
+            )
+            project.logger.lifecycle("JAR Signed: " + it.name)
+
+            signing.sign(it)
+            project.logger.lifecycle("PGP Signed: " + it.name)
+        }
+    }
 }

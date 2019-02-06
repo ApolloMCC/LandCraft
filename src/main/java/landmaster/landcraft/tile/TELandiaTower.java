@@ -152,7 +152,7 @@ public class TELandiaTower extends TileEntity {
 			List<TELandiaTower> tiles = Utils.getTileEntitiesWithinAABB(
 					event.getEntity().getEntityWorld(), TELandiaTower.class,
 					Utils.AABBfromVecs(event.getEntity().getPositionVector().subtract(5, 5, 5),
-							event.getEntity().getPositionVector().addVector(5, 5, 5)));
+							event.getEntity().getPositionVector().add(5, 5, 5)));
 			tiles.stream()
 			.filter(tile -> tile.targetEntity == null)
 			.forEach(tile -> {

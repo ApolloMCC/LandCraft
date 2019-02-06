@@ -17,7 +17,7 @@ public class LandCraftContent {
 
 	public static final CreativeTabs creativeTab = new CreativeTabs(ModInfo.MODID) {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(LandCraftContent.redstone_component);
 		}
 	};
@@ -63,7 +63,6 @@ public class LandCraftContent {
 			tooltip.add(I18n.format(""));
 		}
 	}
-	.setUnlocalizedName("tomato_crop")
 	.setRegistryName("tomato_crop")
 	.setCreativeTab(creativeTab);
 	public static final ItemTomato tomato = new ItemTomato();
@@ -71,7 +70,7 @@ public class LandCraftContent {
 	// TECH ITEMS
 	public static final ItemWrench wrench = new ItemWrench();
 	public static final Item redstone_component = new Item()
-	.setUnlocalizedName("redstone_component")
+	.setTranslationKey("redstone_component")
 	.setRegistryName("redstone_component")
 	.setCreativeTab(creativeTab);
 	public static final ItemLandmastersWings landmasters_wings = new ItemLandmastersWings();

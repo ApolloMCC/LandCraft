@@ -14,7 +14,7 @@ public class ItemBunRieu extends ItemFood {
 		super(11, 0.6f, false); // base for soup only; overriden if noodles present (meta > 0)
 		this.setHasSubtypes(true);
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("bun_rieu").setRegistryName("bun_rieu");
+		this.setTranslationKey("bun_rieu").setRegistryName("bun_rieu");
 	}
 	
 	public static boolean hasNoodles(ItemStack stack) { return stack.getMetadata() > 0; }
@@ -57,8 +57,8 @@ public class ItemBunRieu extends ItemFood {
 	}
 	
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		String baseName = super.getUnlocalizedName(stack);
+	public String getTranslationKey(ItemStack stack) {
+		String baseName = super.getTranslationKey(stack);
 		if (hasNoodles(stack)) {
 			baseName += ".full";
 		}

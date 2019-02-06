@@ -100,8 +100,8 @@ public abstract class BlockModSlab<E extends Enum<E> & IStringSerializable> exte
 	
 	@Nonnull
 	@Override
-	public String getUnlocalizedName(int meta) {
-		return super.getUnlocalizedName() + "." + fromMeta(meta & 7).getName();
+	public String getTranslationKey(int meta) {
+		return super.getTranslationKey() + "." + fromMeta(meta & 7).getName();
 	}
 	
 	@Override

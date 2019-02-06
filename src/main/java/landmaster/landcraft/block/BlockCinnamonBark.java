@@ -32,7 +32,7 @@ public class BlockCinnamonBark extends Block {
 		this.setDefaultState(blockState.getBaseState().withProperty(COVER, EnumFacing.NORTH));
 		this.setSoundType(SoundType.WOOD);
 		Blocks.FIRE.setFireInfo(this, 10, 35);
-		this.setUnlocalizedName("cinnamon_bark").setRegistryName("cinnamon_bark");
+		this.setTranslationKey("cinnamon_bark").setRegistryName("cinnamon_bark");
 	}
 	
 	@Override

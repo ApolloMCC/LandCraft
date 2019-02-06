@@ -27,7 +27,7 @@ public class BlockPlayerMime extends BlockMachineBase {
 		this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName("player_mime").setRegistryName("player_mime");
+        this.setTranslationKey("player_mime").setRegistryName("player_mime");
         this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	
@@ -49,7 +49,7 @@ public class BlockPlayerMime extends BlockMachineBase {
 		List<TEPlayerMime> tiles = Utils.getTileEntitiesWithinAABB(
 				event.getEntity().getEntityWorld(), TEPlayerMime.class,
 				Utils.AABBfromVecs(event.getEntity().getPositionVector().subtract(2, 2, 2),
-						event.getEntity().getPositionVector().addVector(2, 2, 2)));
+						event.getEntity().getPositionVector().add(2, 2, 2)));
 		if (event.getEntityLiving().recentlyHit < 22
 				|| event.getEntityLiving().attackingPlayer == null) {
 			for (TEPlayerMime te: tiles) {

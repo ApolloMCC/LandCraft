@@ -26,7 +26,7 @@ public class BlockLandiaLeaves extends BlockLeaves implements IMetaBlockName {
 		this.setDefaultState(this.blockState.getBaseState()
 				.withProperty(CHECK_DECAY, false)
 				.withProperty(DECAYABLE, true));
-		this.setUnlocalizedName("landia_leaves").setRegistryName("landia_leaves");
+		this.setTranslationKey("landia_leaves").setRegistryName("landia_leaves");
 		this.useNeighborBrightness = true;
 	}
 	
@@ -51,8 +51,8 @@ public class BlockLandiaLeaves extends BlockLeaves implements IMetaBlockName {
 	@Nonnull
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return Blocks.LEAVES.getBlockLayer();
+	public BlockRenderLayer getRenderLayer() {
+		return Blocks.LEAVES.getRenderLayer();
 	}
 	
 	@Override

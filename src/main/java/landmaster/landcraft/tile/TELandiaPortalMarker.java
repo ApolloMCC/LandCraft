@@ -82,7 +82,7 @@ public class TELandiaPortalMarker extends TileEntity implements ITickable {
 		if (getWorld().getBlockState(pos).getValue(BlockLandiaPortalMarker.ACTIVATED)) {
 			List<Entity> ents = getWorld().getEntitiesWithinAABB(Entity.class, Utils.AABBfromVecs(
 					portalLBound().subtract(0.2, 0, 0.2),
-					new Vec3d(pos).addVector(0.5+0.2, -0.01, 0.5+0.2)));
+					new Vec3d(pos).add(0.5+0.2, -0.01, 0.5+0.2)));
 			if (!ents.isEmpty()) {
 				int dimID = getWorld().provider.getDimension() != Config.landiaDimensionID
 						? Config.landiaDimensionID : 0;
@@ -115,7 +115,7 @@ public class TELandiaPortalMarker extends TileEntity implements ITickable {
 	}
 	
 	public BlockPos getBottom() {
-		Vec3d vec0 = new Vec3d(pos).addVector(0.5, -0.01, 0.5);
+		Vec3d vec0 = new Vec3d(pos).add(0.5, -0.01, 0.5);
 		Vec3d vec1 = new Vec3d(pos.getX()+0.5, 0, pos.getZ()+0.5);
 		
 		BlockPos res = new BlockPos(pos.getX(), 0, pos.getZ());
@@ -137,7 +137,7 @@ public class TELandiaPortalMarker extends TileEntity implements ITickable {
 	}
 	
 	public Vec3d portalLBound() {
-		Vec3d vec0 = new Vec3d(pos).addVector(0.5, -0.01, 0.5);
+		Vec3d vec0 = new Vec3d(pos).add(0.5, -0.01, 0.5);
 		Vec3d vec1 = new Vec3d(pos.getX()+0.5, 0, pos.getZ()+0.5);
 		
 		RayTraceResult rtr = getWorld().rayTraceBlocks(vec0, vec1);

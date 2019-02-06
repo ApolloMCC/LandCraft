@@ -21,7 +21,7 @@ public class BlockPot extends BlockMachineBase {
 		this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName("pot").setRegistryName("pot");
+        this.setTranslationKey("pot").setRegistryName("pot");
         this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

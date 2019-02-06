@@ -14,7 +14,7 @@ public class BlockWildOnion extends BlockBush {
 	public static final AxisAlignedBB W_ONION_BOX = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D);
 	
 	public BlockWildOnion() {
-		this.setUnlocalizedName("wild_onion").setRegistryName("wild_onion");
+		this.setTranslationKey("wild_onion").setRegistryName("wild_onion");
 	}
 	
 	@Override

@@ -7,6 +7,6 @@ public class ItemOlive extends ItemFood {
 	public ItemOlive() {
 		super(3, 1.0f, false);
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("olive").setRegistryName("olive");
+		this.setTranslationKey("olive").setRegistryName("olive");
 	}
 }

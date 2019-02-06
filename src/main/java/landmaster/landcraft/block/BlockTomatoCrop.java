@@ -30,7 +30,7 @@ public class BlockTomatoCrop extends Block implements IPlantable, IGrowable {
 				.withProperty(HAS_TOMATOES, false));
 		this.setTickRandomly(true);
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("tomato_crop").setRegistryName("tomato_crop");
+		this.setTranslationKey("tomato_crop").setRegistryName("tomato_crop");
 	}
 	
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -150,7 +150,7 @@ public class BlockTomatoCrop extends Block implements IPlantable, IGrowable {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 	

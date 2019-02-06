@@ -34,9 +34,9 @@ public class Utils {
 	public static RayTraceResult raytraceEntity(Entity entity, Vec3d start, Vec3d look, double range,
 			boolean ignoreCanBeCollidedWith) {
 		// Vec3 look = entity.getLook(partialTicks);
-		Vec3d direction = start.addVector(look.x * range, look.y * range, look.z * range);
+		Vec3d direction = start.add(look.x * range, look.y * range, look.z * range);
 		
-		// Vec3 direction = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0,
+		// Vec3 direction = vec3.add(vec31.xCoord * d0, vec31.yCoord * d0,
 		// vec31.zCoord * d0);
 		Entity pointedEntity = null;
 		Vec3d hit = null;
@@ -131,7 +131,7 @@ public class Utils {
 		for (int i1 = i; i1 <= j; ++i1) {
 			for (int j1 = k; j1 <= l; ++j1) {
 				if (isChunkLoaded(world, i1, j1, true)) {
-					Iterator<TileEntity> iterator = world.getChunkFromChunkCoords(i1, j1).getTileEntityMap().values()
+					Iterator<TileEntity> iterator = world.getChunk(i1, j1).getTileEntityMap().values()
 							.iterator();
 					while (iterator.hasNext()) {
 						TileEntity te = iterator.next();

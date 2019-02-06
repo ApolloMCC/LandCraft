@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.*;
 public class ItemWeatherWand extends Item {
 	public ItemWeatherWand() {
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("weather_wand").setRegistryName("weather_wand");
+		this.setTranslationKey("weather_wand").setRegistryName("weather_wand");
 	}
 	
 	@SideOnly(Side.CLIENT)

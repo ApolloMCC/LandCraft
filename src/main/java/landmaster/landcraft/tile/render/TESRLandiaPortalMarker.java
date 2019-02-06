@@ -35,7 +35,7 @@ public class TESRLandiaPortalMarker extends TileEntitySpecialRenderer<TELandiaPo
 			
 			
 			Vec3d vec = new Vec3d(doubleX, doubleY+player.getEyeHeight(), doubleZ);
-			Vec3d vec0 = new Vec3d(te.getPos()).addVector(0.5, -0.01, 0.5);
+			Vec3d vec0 = new Vec3d(te.getPos()).add(0.5, -0.01, 0.5);
 			Vec3d vec1 = new Vec3d(te.getPos().getX()+0.5, 0, te.getPos().getZ()+0.5);
 			RayTraceResult rtr = te.getWorld().rayTraceBlocks(vec0, vec1);
 			if (rtr != null) vec1 = rtr.hitVec;

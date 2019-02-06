@@ -15,7 +15,7 @@ public class BlockLandiaWoodSlab extends BlockModSlab<LandiaTreeType> {
 		
 		this.setHardness(2.0F);
 		this.setSoundType(SoundType.WOOD);
-		this.setUnlocalizedName("landia_wood_slab").setRegistryName("landia_wood_slab");
+		this.setTranslationKey("landia_wood_slab").setRegistryName("landia_wood_slab");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

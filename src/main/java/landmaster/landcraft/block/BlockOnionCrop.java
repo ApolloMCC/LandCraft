@@ -22,7 +22,7 @@ public class BlockOnionCrop extends BlockCrops {
 	
 	public BlockOnionCrop() {
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("onion_crop").setRegistryName("onion_crop");
+		this.setTranslationKey("onion_crop").setRegistryName("onion_crop");
 	}
 	
 	@Override

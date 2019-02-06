@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.*;
 
 public class Tools {
 	public static ResourceLocation suffix(ResourceLocation original, Object suffix) {
-		return new ResourceLocation(original.getResourceDomain(), original.getResourcePath()+suffix);
+		return new ResourceLocation(original.getNamespace(), original.getPath()+suffix);
 	}
 	
 	public static ResourceLocation underscoreSuffix(ResourceLocation original, Object suffix) {
@@ -54,9 +54,9 @@ public class Tools {
 	public static void teleportPlayerTo(EntityPlayerMP player, Coord4D coord) {
 		if (player.dimension != coord.dimensionId) {
 			int id = player.dimension;
-			WorldServer oldWorld = player.mcServer.getWorld(player.dimension);
+			WorldServer oldWorld = player.server.getWorld(player.dimension);
 			player.dimension = coord.dimensionId;
-			WorldServer newWorld = player.mcServer.getWorld(player.dimension);
+			WorldServer newWorld = player.server.getWorld(player.dimension);
 			player.connection.sendPacket(new SPacketRespawn(player.dimension, player.world.getDifficulty(), newWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
 			oldWorld.removeEntityDangerously(player);
 			player.isDead = false;
@@ -69,11 +69,11 @@ public class Tools {
 				player.setWorld(newWorld);
 			}
 	
-			player.mcServer.getPlayerList().preparePlayer(player, oldWorld);
+			player.server.getPlayerList().preparePlayer(player, oldWorld);
 			player.connection.setPlayerLocation(coord.xCoord+0.5, coord.yCoord+1, coord.zCoord+0.5, player.rotationYaw, player.rotationPitch);
 			player.interactionManager.setWorld(newWorld);
-			player.mcServer.getPlayerList().updateTimeAndWeatherForPlayer(player, newWorld);
-			player.mcServer.getPlayerList().syncPlayerInventory(player);
+			player.server.getPlayerList().updateTimeAndWeatherForPlayer(player, newWorld);
+			player.server.getPlayerList().syncPlayerInventory(player);
 	
 			for(PotionEffect potioneffect : player.getActivePotionEffects())
 			{

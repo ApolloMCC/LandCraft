@@ -21,7 +21,7 @@ public class BlockThoriumGenerator extends BlockMachineBase {
 		this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName("thorium_generator").setRegistryName("thorium_generator");
+        this.setTranslationKey("thorium_generator").setRegistryName("thorium_generator");
         this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	@Override

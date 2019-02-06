@@ -14,7 +14,7 @@ public class BlockWildRice extends BlockBush {
 	public static final AxisAlignedBB W_RICE_BOX = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	
 	public BlockWildRice() {
-		this.setUnlocalizedName("wild_rice").setRegistryName("wild_rice");
+		this.setTranslationKey("wild_rice").setRegistryName("wild_rice");
 	}
 	
 	@Override

@@ -9,13 +9,13 @@ import net.minecraft.util.*;
 public class ItemLandiaIngot extends Item {
 	public ItemLandiaIngot() {
 		setHasSubtypes(true);
-		setUnlocalizedName("landia_ingot").setRegistryName("landia_ingot");
+		setTranslationKey("landia_ingot").setRegistryName("landia_ingot");
 		setCreativeTab(LandCraftContent.creativeTab);
 	}
 	
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + LandiaOreType.values()[stack.getMetadata()];
+	public String getTranslationKey(ItemStack stack) {
+		return super.getTranslationKey(stack) + "." + LandiaOreType.values()[stack.getMetadata()];
 	}
 	
 	@Override

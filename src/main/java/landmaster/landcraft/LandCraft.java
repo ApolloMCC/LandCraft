@@ -210,7 +210,7 @@ public class LandCraft {
 			Block block = LandCraftContent.landia_wood_stairs.get(type);
 			ItemBlock ib = new ItemBlock(block);
 			event.getRegistry().register(ib.setRegistryName(block.getRegistryName()));
-			proxy.registerItemRenderer(ib, 0, block.getRegistryName().getResourcePath());
+			proxy.registerItemRenderer(ib, 0, block.getRegistryName().getPath());
 			OreDictionary.registerOre("stairWood", block);
 		}
 		
@@ -252,7 +252,7 @@ public class LandCraft {
 		ItemBlock landia_ore_item = new ItemBlockMeta(LandCraftContent.landia_ore);
 		event.getRegistry().register(landia_ore_item.setRegistryName(LandCraftContent.landia_ore.getRegistryName()));
 		for (int i=0; i<oreValues.length; ++i) {
-			proxy.registerItemRenderer(landia_ore_item, i, LandCraftContent.landia_ore.getRegistryName().getResourcePath(), "type="+oreValues[i]);
+			proxy.registerItemRenderer(landia_ore_item, i, LandCraftContent.landia_ore.getRegistryName().getPath(), "type="+oreValues[i]);
 			OreDictionary.registerOre("ore"+StringUtils.capitalize(oreValues[i].toString()),
 					new ItemStack(LandCraftContent.landia_ore, 1, i));
 		}
@@ -260,7 +260,7 @@ public class LandCraft {
 		ItemBlock landia_metal_item = new ItemBlockMeta(LandCraftContent.landia_metal);
 		event.getRegistry().register(landia_metal_item.setRegistryName(LandCraftContent.landia_metal.getRegistryName()));
 		for (int i=0; i<oreValues.length; ++i) {
-			proxy.registerItemRenderer(landia_metal_item, i, LandCraftContent.landia_metal.getRegistryName().getResourcePath(), "type="+oreValues[i]);
+			proxy.registerItemRenderer(landia_metal_item, i, LandCraftContent.landia_metal.getRegistryName().getPath(), "type="+oreValues[i]);
 			OreDictionary.registerOre("block"+StringUtils.capitalize(oreValues[i].toString()),
 					new ItemStack(LandCraftContent.landia_metal, 1, i));
 		}

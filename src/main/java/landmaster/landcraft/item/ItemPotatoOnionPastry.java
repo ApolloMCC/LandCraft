@@ -10,7 +10,7 @@ public class ItemPotatoOnionPastry extends ItemFood {
 		super(5, 0.5f, false); // base for raw; overriden for cooked (meta > 0)
 		this.setHasSubtypes(true);
 		this.setCreativeTab(LandCraftContent.creativeTab);
-		this.setUnlocalizedName("potato_onion_pastry").setRegistryName("potato_onion_pastry");
+		this.setTranslationKey("potato_onion_pastry").setRegistryName("potato_onion_pastry");
 	}
 	
 	public static boolean isCooked(ItemStack stack) { return stack.getMetadata() > 0; }
@@ -32,8 +32,8 @@ public class ItemPotatoOnionPastry extends ItemFood {
 	}
 	
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		String baseName = super.getUnlocalizedName(stack);
+	public String getTranslationKey(ItemStack stack) {
+		String baseName = super.getTranslationKey(stack);
 		if (isCooked(stack)) {
 			baseName += ".cooked";
 		}

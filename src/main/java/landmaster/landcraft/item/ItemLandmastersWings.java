@@ -37,7 +37,7 @@ public class ItemLandmastersWings extends ItemEnergyBase {
 	public ItemLandmastersWings() {
 		super(MAX_ENERGY, MAX_ENERGY, MAX_ENERGY);
 		this.maxStackSize = 1;
-		this.setUnlocalizedName("landmasters_wings").setRegistryName("landmasters_wings");
+		this.setTranslationKey("landmasters_wings").setRegistryName("landmasters_wings");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 		
 		proxy.initEvents();

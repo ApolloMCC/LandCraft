@@ -28,7 +28,7 @@ public class BlockLandiaLog extends Block implements IMetaBlockName {
 		this.setResistance(5F);
 		this.setSoundType(SoundType.WOOD);
 		Blocks.FIRE.setFireInfo(this, 5, 20);
-		this.setUnlocalizedName("landia_log").setRegistryName("landia_log");
+		this.setTranslationKey("landia_log").setRegistryName("landia_log");
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
 	

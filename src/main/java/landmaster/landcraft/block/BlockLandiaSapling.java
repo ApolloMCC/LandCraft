@@ -26,7 +26,7 @@ public class BlockLandiaSapling extends BlockSapling implements IMetaBlockName {
 		this.setDefaultState(this.blockState.getBaseState());
 		this.setSoundType(SoundType.PLANT);
 		this.setHardness(0.0F);
-		this.setUnlocalizedName("landia_sapling").setRegistryName("landia_sapling");
+		this.setTranslationKey("landia_sapling").setRegistryName("landia_sapling");
 	}
 	
 	@Override

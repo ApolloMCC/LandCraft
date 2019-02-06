@@ -7,7 +7,7 @@ import net.minecraft.block.state.*;
 public class BlockModStairs extends BlockStairs {
 	public BlockModStairs(IBlockState state, String name) {
 		super(state);
-		this.setUnlocalizedName(name).setRegistryName(name);
+		this.setTranslationKey(name).setRegistryName(name);
 		this.useNeighborBrightness = true;
 		this.setCreativeTab(LandCraftContent.creativeTab);
 	}
