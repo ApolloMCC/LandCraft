@@ -22,7 +22,7 @@ public abstract class LandiaPlantWorldgen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		if (chunkGenerator instanceof LandiaChunkGenerator) {
+		if (world.provider instanceof LandiaWorldProvider) {
 			this.genPlantNormally(world, random, new BlockPos(chunkX*16, 0, chunkZ*16), getState(), getAmount());
 		}
 	}

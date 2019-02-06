@@ -26,7 +26,7 @@ public class OliveWorldgen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		if (chunkGenerator instanceof LandiaChunkGenerator) {
+		if (world.provider instanceof LandiaWorldProvider) {
 			BlockPos pos = new BlockPos(chunkX*16+8, 0, chunkZ*16+8);
 			if (allowedBiomes.contains(world.getBiome(pos))) {
 				int xSpawn = pos.getX() + random.nextInt(16);
