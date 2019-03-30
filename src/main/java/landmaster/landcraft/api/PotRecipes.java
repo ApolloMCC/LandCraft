@@ -21,7 +21,6 @@ public class PotRecipes {
 	 * An interface representing a recipe.
 	 * @author Landmaster
 	 */
-	@FunctionalInterface
 	public static interface RecipeProcess {
 		/**
 		 * Checks for a recipe match.
@@ -32,12 +31,47 @@ public class PotRecipes {
 		 * @return A {@link RecipeOutput} describing the recipe
 		 */
 		RecipeOutput process(ItemStack in1, ItemStack in2, ItemStack in3, FluidStack fs);
+		
+		/**
+		 * Required to remove via Minetweaker.
+		 * @return posible RecipeOutput instances, not including the empty one
+		 * @implNote The default implementation returns an empty collection; it is strongly recommended
+		 * that this should be overridden, except for a empty RecipeProcess.
+		 */
+		default Collection<RecipeOutput> possibleOutputs() { return Collections.emptyList(); };
 	}
 	
-	public static class RecipePOredict implements RecipeProcess {
+	public static abstract class BasicRecipeProcess implements RecipeProcess {
+		public final RecipeOutput out;
+		
+		public BasicRecipeProcess(RecipeOutput out) {
+			this.out = out;
+		}
+		
+		/**
+		 * 
+		 * @param in1
+		 * @param in2
+		 * @param in3
+		 * @param fs
+		 * @return whether the recipe should output {@link BasicRecipeProcess#out}
+		 */
+		public abstract boolean match(ItemStack in1, ItemStack in2, ItemStack in3, FluidStack fs);
+		
+		@Override
+		public RecipeOutput process(ItemStack in1, ItemStack in2, ItemStack in3, FluidStack fs) {
+			return this.match(in1, in2, in3, fs) ? out : new RecipeOutput();
+		}
+		
+		@Override
+		public Collection<RecipeOutput> possibleOutputs() {
+			return Collections.singleton(this.out);
+		}
+	}
+	
+	public static class RecipePOredict extends BasicRecipeProcess {
 		public final String s1, s2, s3;
 		public final FluidStack fs;
-		public final RecipeOutput out;
 		
 		@Deprecated
 		public RecipePOredict(int i1, int i2, int i3, FluidStack fs, RecipeOutput out) {
@@ -45,12 +79,12 @@ public class PotRecipes {
 		}
 		
 		public RecipePOredict(String s1, String s2, String s3, FluidStack fs, RecipeOutput out) {
+			super(out);
 			this.s1 = s1;
 			this.s2 = s2;
 			this.s3 = s3;
 			this.fs = fs;
 			if (this.fs != null) this.fs.amount = out.fluidPerTick;
-			this.out = out;
 		}
 		
 		public static RecipePOredict of(String s1, String s2, String s3, FluidStack fs, RecipeOutput out) {
@@ -58,9 +92,9 @@ public class PotRecipes {
 		}
 		
 		@Override
-		public RecipeOutput process(ItemStack in1, ItemStack in2, ItemStack in3, FluidStack fs) {
+		public boolean match(ItemStack in1, ItemStack in2, ItemStack in3, FluidStack fs) {
 			if (in1.isEmpty() || in2.isEmpty() || in3.isEmpty()) {
-				return new RecipeOutput();
+				return false;
 			}
 			List<int[]> stacks_ods = Lists
 					.transform(Arrays.asList(in1, in2, in3), OreDictionary::getOreIDs);
@@ -79,13 +113,13 @@ public class PotRecipes {
 					}
 				}
 				if (!valid) {
-					return new RecipeOutput();
+					return false;
 				}
 			}
 			if (!required.isEmpty() || !fs.equals(this.fs)) {
-				return new RecipeOutput();
+				return false;
 			}
-			return out;
+			return true;
 		}
 	}
 	

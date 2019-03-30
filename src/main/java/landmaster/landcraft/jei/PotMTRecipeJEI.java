@@ -1,20 +1,20 @@
 package landmaster.landcraft.jei;
 
 import java.util.*;
+import java.util.stream.*;
 
-import landmaster.landcraft.api.*;
+import landmaster.landcraft.crafttweaker.*;
 import mezz.jei.api.ingredients.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.*;
 import net.minecraft.util.text.*;
 import net.minecraftforge.fluids.*;
-import net.minecraftforge.oredict.*;
 
-public class PotOredictRecipeJEI extends PotRecipeJEI {
-	private PotRecipes.RecipePOredict prc;
+public class PotMTRecipeJEI extends PotRecipeJEI {
+	private MTPotRecipeProcess prc;
 	
-	public PotOredictRecipeJEI(PotRecipes.RecipePOredict prc) {
+	public PotMTRecipeJEI(MTPotRecipeProcess prc) {
 		super(prc);
 		this.prc = prc;
 	}
@@ -30,11 +30,12 @@ public class PotOredictRecipeJEI extends PotRecipeJEI {
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputLists(ItemStack.class,
 				Arrays.asList(
-						OreDictionary.getOres(prc.s1),
-						OreDictionary.getOres(prc.s2),
-						OreDictionary.getOres(prc.s3)
+						prc.ingr1.getItems().stream().map(stack -> (ItemStack)stack.getInternal()).collect(Collectors.toList()),
+						prc.ingr2.getItems().stream().map(stack -> (ItemStack)stack.getInternal()).collect(Collectors.toList()),
+						prc.ingr3.getItems().stream().map(stack -> (ItemStack)stack.getInternal()).collect(Collectors.toList())
 						));
 		ingredients.setInput(FluidStack.class, prc.fs);
 		ingredients.setOutput(ItemStack.class, prc.out.out);
 	}
+	
 }

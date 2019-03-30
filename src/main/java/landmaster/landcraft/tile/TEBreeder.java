@@ -2,6 +2,8 @@ package landmaster.landcraft.tile;
 
 import java.util.stream.*;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang3.*;
 
 import landmaster.landcraft.api.*;
@@ -37,7 +39,19 @@ implements ITickable, RedstoneControl.Provider<TEBreeder>, IInventory {
 	public TEBreeder() {
 		super();
 		temperature = fuel = product = 0;
-		ish = new ItemStackHandler(Slots.values().length);
+		ish = new ItemStackHandler(Slots.values().length) {
+			@SuppressWarnings("incomplete-switch")
+			@Override
+			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+				switch (Slots.values()[slot]) {
+				case FEEDSTOCK:
+					return BreederFeedstock.getMass(stack) > 0;
+				case REACTANT:
+					return ArrayUtils.contains(OreDictionary.getOreIDs(stack), OreDictionary.getOreID("ingotThorium"));
+				}
+				return super.isItemValid(slot, stack);
+			}
+		};
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {

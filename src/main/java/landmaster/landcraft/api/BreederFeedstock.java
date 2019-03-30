@@ -2,16 +2,23 @@ package landmaster.landcraft.api;
 
 import java.util.*;
 
-import gnu.trove.map.*;
-import gnu.trove.map.hash.*;
+import com.google.common.collect.*;
+
+import it.unimi.dsi.fastutil.ints.*;
 import net.minecraft.item.*;
 import net.minecraftforge.oredict.*;
 
 public class BreederFeedstock {
-	private static final TIntIntMap feedstockMassDict = new TIntIntHashMap(),
-			feedstockTempDict = new TIntIntHashMap();
+	private static final Int2ObjectMap<MassTempDuo> feedstockMassTempDict = new Int2ObjectOpenHashMap<>();
 	
-	private static final List<OreMassTempTri> triList = new ArrayList<>();
+	public static class MassTempDuo {
+		public final int mass, temp;
+		
+		public MassTempDuo(int mass, int temp) {
+			this.mass = mass;
+			this.temp = temp;
+		}
+	}
 	
 	public static class OreMassTempTri {
 		public final int oid;
@@ -24,8 +31,9 @@ public class BreederFeedstock {
 		}
 	}
 	
-	public static List<OreMassTempTri> getOreMassTempTris() {
-		return Collections.unmodifiableList(triList);
+	public static Collection<OreMassTempTri> getOreMassTempTris() {
+		return Collections2.transform(feedstockMassTempDict.int2ObjectEntrySet(),
+				entry -> new OreMassTempTri(entry.getIntKey(),entry.getValue().mass,entry.getValue().temp));
 	}
 	
 	public static void addOreDict(String ore, int mass, int temp) {
@@ -46,17 +54,25 @@ public class BreederFeedstock {
 		} else if (temp <= 0) {
 			throw new IllegalArgumentException("Temperature must be positive");
 		}
-		feedstockMassDict.put(oreId, mass);
-		feedstockTempDict.put(oreId, temp);
-		triList.add(new OreMassTempTri(oreId, mass, temp));
+		feedstockMassTempDict.put(oreId, new MassTempDuo(mass, temp));
+	}
+	
+	public static void removeOreDict(String ore) {
+		if (OreDictionary.doesOreNameExist(ore)) {
+			removeOreDict(OreDictionary.getOreID(ore));
+		}
+	}
+	
+	public static void removeOreDict(int oreId) {
+		feedstockMassTempDict.remove(oreId);
 	}
 	
 	public static int getMass(ItemStack is) {
 		if (!is.isEmpty()) {
 			int[] arr = OreDictionary.getOreIDs(is);
 			for (int i=0; i<arr.length; ++i) {
-				if (feedstockMassDict.containsKey(arr[i])) {
-					return feedstockMassDict.get(arr[i]);
+				if (feedstockMassTempDict.containsKey(arr[i])) {
+					return feedstockMassTempDict.get(arr[i]).mass;
 				}
 			}
 		}
@@ -67,8 +83,8 @@ public class BreederFeedstock {
 		if (!is.isEmpty()) {
 			int[] arr = OreDictionary.getOreIDs(is);
 			for (int i=0; i<arr.length; ++i) {
-				if (feedstockTempDict.containsKey(arr[i])) {
-					return feedstockTempDict.get(arr[i]);
+				if (feedstockMassTempDict.containsKey(arr[i])) {
+					return feedstockMassTempDict.get(arr[i]).temp;
 				}
 			}
 		}

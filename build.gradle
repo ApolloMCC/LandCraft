@@ -21,7 +21,7 @@ targetCompatibility = 1.8
 
 group = "landmaster"
 archivesBaseName = "landcraft"
-version = "2.2.1.2"
+version = "2.2.3.1"
 
 minecraft {
     version = "1.12.2-14.23.5.2768"
@@ -46,12 +46,16 @@ repositories {
         name = "covers1624"
         url = "https://maven.covers1624.net"
     }
+    maven {
+		url "http://maven.blamejared.com"
+	}
 }
 
 dependencies {
     provided("cofh:CoFHCore:1.12-4.3.0.3:deobf")
     provided("cofh:RedstoneFlux:1.12-2.0.0.1:deobf")
     provided("mezz.jei:jei_1.12:4.7.1.69")
+    provided("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.11.494")
 }
 
 jar {

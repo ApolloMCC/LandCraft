@@ -2,7 +2,6 @@ package landmaster.landcraft.net;
 
 import java.util.*;
 
-import gnu.trove.map.hash.*;
 import io.netty.buffer.*;
 import landmaster.landcraft.api.*;
 import net.minecraft.tileentity.*;
@@ -13,7 +12,7 @@ import net.minecraftforge.fml.relauncher.*;
 public class PacketHandler {
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MODID);
 	
-	private static final Map<Class<? extends TileEntity>, Handle<?, ?, ?>> messageMap = new THashMap<>();
+	private static final Map<Class<? extends TileEntity>, Handle<?, ?, ?>> messageMap = new HashMap<>();
 	
 	public static <T extends TileEntity> void registerTEHandler(Class<T> clazz, Handle<T, ?, ?> handle) {
 		messageMap.put(clazz, handle);

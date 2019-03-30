@@ -22,6 +22,8 @@ msg.big_brother.henchmen.summon=§l§o§1Big Brother§r is watching you!
 
 msg.weather_wand.use=The landlords have come...
 
+msg.temperature_detector.set=Breeder position set to (%d, %d, %d)
+
 # NATURE
 
 tile.landia_sapling.cinnamon.name=Cinnamon Sapling
@@ -68,6 +70,7 @@ tile.tomato_crop.name=Tomato Vine
 # MACHINES
 
 tile.breeder.name=Breeder Reactor
+tile.temperature_detector.name=Temperature Detector
 tile.player_mime.name=Player Mime
 tile.thorium_generator.name=Thorium Generator
 tile.landia_portal_marker.name=Landia Portal Marker
@@ -144,12 +147,17 @@ info.breeder.temp=Temp.: %s/%s
 info.breeder.product=Spare output: %d
 
 info.breeder.jei.temp=Temperature threshold: %s
-info.breeder.jei.product=Output (in 1/16 of a thorium ingot): %d
+info.breeder.jei.product=Output (in 1/32 of a thorium ingot): %d
+
+info.pot.jei.energy_and_time=%d RF/t (%d t)
 
 # TOOLTIPS
 
-tooltip.landia_portal_marker.info=§bOnce placed, activate by killing an undead mob in the vicinity.
+tooltip.landia_portal_marker.info=§bOnce placed a few blocks above ground, activate by killing an undead mob in the vicinity.
 tooltip.weather_wand.info=§5Right-click in Landia to change the weather there.
 tooltip.tomato_crop.info=§cPlant this in farmland to grow. Growth can be sped up with bonemeal.
 tooltip.per_tick=(Amount per tick)
 tooltip.landmasters_wings.info=§bAllows flying when powered and in the chest slot. (%d RF/tick)
+tooltip.temperature_detector.info.0=Left-click a breeder reactor to set coordinates.
+tooltip.temperature_detector.info.1=This must be within a 9x9x9 cube centered on the reactor.
+tooltip.temperature_detector.coords=Breeder coordinates: (%d, %d, %d)

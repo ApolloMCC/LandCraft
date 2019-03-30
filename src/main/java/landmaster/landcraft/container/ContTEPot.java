@@ -36,7 +36,7 @@ public class ContTEPot extends ContEnergy {
 				fs = nfs;
 				energy = te.getEnergyStored(null);
 				if (fs != null) fs = fs.copy();
-				PacketHandler.INSTANCE.sendTo(new PacketUpdateTE(new Coord4D(te), new UpdateTEPot(energy, progress, time)),
+				PacketHandler.INSTANCE.sendTo(new PacketUpdateTE(new Coord4D(te), new UpdateTEPot(energy, progress, time, fs)),
 						(EntityPlayerMP)player);
 			}
 		}

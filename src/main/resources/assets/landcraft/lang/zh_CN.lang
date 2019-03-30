@@ -1,0 +1,157 @@
+itemGroup.landcraft=Land Craft
+
+entity.big_brother.name=Big Brother
+entity.wizard.name=巫师
+entity.wizard_magic_fireball.name=魔法火球
+entity.zombie_crabman.name=Zombie Crabman
+
+tile.landia_tower.name=兰迪亚之塔
+
+msg.landia_tower.check.0=做%d格高的塔并且离主塔%d格远:
+msg.landia_tower.check.1=在北方,是§bFriscia§r...
+msg.landia_tower.check.2=在东方,是§dMorgan§r...
+msg.landia_tower.check.3=在南方,是§9Rachel§r...
+msg.landia_tower.check.4=在西方,是§3Garrett§r...
+msg.landia_tower.check.5=围绕着兰迪亚主塔的底部...
+msg.landia_tower.check.6=放上在下界层的§cLandmaster§r,和在天空层的§6Kelli§r.
+
+msg.landia_tower.nearcomplete.0=塔几乎充能好了
+msg.landia_tower.nearcomplete.1=现在, 献祭有Azanor力量的人.
+
+msg.big_brother.henchmen.summon=§l§o§1Big Brother§r在看着你!
+
+msg.weather_wand.use=大地之王回来了...
+
+# NATURE
+
+tile.landia_sapling.cinnamon.name肉桂树苗
+tile.landia_leaves.cinnamon.name=肉桂树叶
+tile.landia_log.cinnamon.name=肉桂木
+tile.landia_planks.cinnamon.name=肉桂木板
+tile.landia_wood_slab.cinnamon.name=肉桂木半砖
+
+tile.cinnamon_stairs.name=肉桂木台阶
+
+tile.cinnamon_bark.name=肉桂树皮
+
+item.cinnamon.name=肉桂
+
+tile.landia_sapling.olive.name=橄榄树苗
+tile.landia_leaves.olive.name=橄榄树叶
+tile.landia_log.olive.name=橄榄木
+tile.landia_planks.olive.name=橄榄木板
+tile.landia_wood_slab.olive.name=橄榄木半砖
+
+tile.olive_stairs.name=橄榄木台阶
+
+item.olive.name=橄榄
+
+# AGRICULTURE
+
+tile.onion_crop.name=洋葱
+tile.wild_onion.name=野生洋葱
+item.onion.name=洋葱
+tile.rice_crop.name=水稻
+tile.wild_rice.name=野生水稻
+item.rice.name=水稻
+item.potato_onion_pastry.name=未烹饪过的Pierogi
+item.potato_onion_pastry.cooked.name=Pierogi
+item.pho.name=Pho Broth
+item.pho.full.name=Pho
+item.landia_crab_flesh.name=Landia Crab Flesh
+item.bun_rieu.name=Bun Rieu Broth
+item.bun_rieu.full.name=Bun Rieu
+item.tomato_crop.name=西红柿藤蔓
+item.tomato.name=西红柿
+tile.tomato_crop.name=西红柿藤蔓
+
+# MACHINES
+
+tile.breeder.name=增殖反应堆
+tile.player_mime.name=玩家击杀模拟器
+tile.thorium_generator.name=钍反应堆
+tile.landia_portal_marker.name=兰迪亚传送门标记器
+tile.pot.name=炉灶
+
+item.item_wrench.name=扳手
+
+item.redstone_component.name=红石零件
+
+item.landmasters_wings.name=Landmaster的翅膀
+
+item.weather_wand.name=兰迪亚天气权杖
+
+# METALS
+
+tile.landia_ore.kelline.name=Kelline矿
+tile.landia_ore.garfax.name=Garfax矿
+tile.landia_ore.morganine.name=Morganine矿
+tile.landia_ore.racheline.name=Racheline矿
+tile.landia_ore.friscion.name=Friscion矿
+
+tile.landia_metal.kelline.name=Kelline块
+tile.landia_metal.garfax.name=Garfax块
+tile.landia_metal.morganine.name=Morganine块
+tile.landia_metal.racheline.name=Racheline块
+tile.landia_metal.friscion.name=Friscion块
+
+item.landia_ingot.kelline.name=Kelline锭
+item.landia_ingot.garfax.name=Garfax锭
+item.landia_ingot.morganine.name=Morganine锭
+item.landia_ingot.racheline.name=Racheline锭
+item.landia_ingot.friscion.name=Friscion锭
+
+# TOOLS
+
+item.kelline_sword.name=Kelline剑
+item.kelline_pickaxe.name=Kelline镐
+item.kelline_axe.name=Kelline斧
+item.kelline_shovel.name=Kelline铲
+item.kelline_hoe.name=Kelline锄
+
+item.garfax_sword.name=Garfax剑
+item.garfax_pickaxe.name=Garfax镐
+item.garfax_axe.name=Garfax斧
+item.garfax_shovel.name=Garfax铲
+item.garfax_hoe.name=Garfax锄
+
+item.morganine_sword.name=Morganine剑
+item.morganine_pickaxe.name=Morganine镐
+item.morganine_axe.name=Morganine斧
+item.morganine_shovel.name=Morganine铲
+item.morganine_hoe.name=Morganine锄
+
+item.racheline_sword.name=Racheline剑
+item.racheline_pickaxe.name=Racheline镐
+item.racheline_axe.name=Racheline斧
+item.racheline_shovel.name=Racheline铲
+item.racheline_hoe.name=Racheline锄
+
+item.friscion_sword.name=Friscion剑
+item.friscion_pickaxe.name=Friscion镐
+item.friscion_axe.name=Friscion斧
+item.friscion_shovel.name=Friscion铲
+item.friscion_hoe.name=Friscion锄
+
+# HEADER
+
+gui.header.breeder.feedstock=反应堆输出
+
+# INFO
+
+info.breeder.fuel=燃料: %d
+info.breeder.temp=温度.: %s/%s
+info.breeder.product=剩余输出: %d
+
+info.breeder.jei.temp=临界温度: %s
+info.breeder.jei.product=输出(一个钍锭的32分之一): %d
+
+info.pot.jei.energy_and_time=%d RF/t (%d t)
+
+# TOOLTIPS
+
+tooltip.landia_portal_marker.info=§b在距离地面几格的地方放下它，通过在他附近杀死一只不死生物来激活它
+tooltip.weather_wand.info=§5在兰迪亚世界右键改变天气
+tooltip.tomato_crop.info=§c在耕地上种植 可以用骨粉催熟.
+tooltip.per_tick=(每tick数值)
+tooltip.landmasters_wings.info=§b供电且放在胸甲栏里可以飞行 (%d RF/tick)

@@ -48,6 +48,7 @@ public class LandCraft {
 	@SidedProxy(serverSide = "landmaster.landcraft.proxy.CommonProxy", clientSide = "landmaster.landcraft.proxy.ClientProxy")
 	public static CommonProxy proxy;
 	
+	@SuppressWarnings("deprecation") // Due to the fact that LandCraft was ported to 1.12 extremely early, the ResourceLocation overload of registerTileEntity did not exist yet. Unfortunately, Forge does not provide a good way of migrating to the new method.
 	@SubscribeEvent
 	public static void addBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().register(LandCraftContent.landia_portal_marker);
@@ -90,18 +91,25 @@ public class LandCraft {
 		
 		if (Config.breeder) {
 			event.getRegistry().register(LandCraftContent.breeder);
+			GameRegistry.registerTileEntity(TEBreeder.class, ModInfo.MODID+"_breeder_reactor");
+			
+			event.getRegistry().register(LandCraftContent.temperature_detector);
+			GameRegistry.registerTileEntity(TETemperatureDetector.class, new ResourceLocation(ModInfo.MODID, "temperature_detector"));
 		}
 		
 		if (Config.player_mime) {
 			event.getRegistry().register(LandCraftContent.player_mime);
+			GameRegistry.registerTileEntity(TEPlayerMime.class, ModInfo.MODID+"_player_mime");
 		}
 		
 		if (Config.thorium_generator) {
 			event.getRegistry().register(LandCraftContent.thorium_generator);
+			GameRegistry.registerTileEntity(TEThoriumGenerator.class, ModInfo.MODID+"_thorium_generator");
 		}
 		
 		if (Config.pot) {
 			event.getRegistry().register(LandCraftContent.pot);
+			GameRegistry.registerTileEntity(TEPot.class, ModInfo.MODID+"_pot");
 		}
 		
 		event.getRegistry().register(LandCraftContent.landia_ore);
@@ -218,28 +226,29 @@ public class LandCraft {
 			ItemBlock breeder_item = new ItemBlock(LandCraftContent.breeder);
 			event.getRegistry().register(breeder_item.setRegistryName(LandCraftContent.breeder.getRegistryName()));
 			proxy.registerItemRenderer(breeder_item, 0, "breeder");
-			GameRegistry.registerTileEntity(TEBreeder.class, ModInfo.MODID+"_breeder_reactor");
+			
+			ItemBlock temperature_detector_item = new ItemBlockTemperatureDetector(LandCraftContent.temperature_detector);
+			event.getRegistry().register(temperature_detector_item
+					.setRegistryName(LandCraftContent.temperature_detector.getRegistryName()));
+			proxy.registerItemRenderer(temperature_detector_item, 0, "temperature_detector");
 		}
 		
 		if (Config.player_mime) {
 			ItemBlock player_mime_item = new ItemBlock(LandCraftContent.player_mime);
 			event.getRegistry().register(player_mime_item.setRegistryName(LandCraftContent.player_mime.getRegistryName()));
 			proxy.registerItemRenderer(player_mime_item, 0, "player_mime");
-			GameRegistry.registerTileEntity(TEPlayerMime.class, ModInfo.MODID+"_player_mime");
 		}
 		
 		if (Config.thorium_generator) {
 			ItemBlock thorium_generator_item = new ItemBlock(LandCraftContent.thorium_generator);
 			event.getRegistry().register(thorium_generator_item.setRegistryName(LandCraftContent.thorium_generator.getRegistryName()));
 			proxy.registerItemRenderer(thorium_generator_item, 0, "thorium_generator");
-			GameRegistry.registerTileEntity(TEThoriumGenerator.class, ModInfo.MODID+"_thorium_generator");
 		}
 		
 		if (Config.pot) {
 			ItemBlock pot_item = new ItemBlock(LandCraftContent.pot);
 			event.getRegistry().register(pot_item.setRegistryName(LandCraftContent.pot.getRegistryName()));
 			proxy.registerItemRenderer(pot_item, 0, "pot");
-			GameRegistry.registerTileEntity(TEPot.class, ModInfo.MODID+"_pot");
 		}
 		
 		if (Config.wrench) {
@@ -434,6 +443,15 @@ public class LandCraft {
 					'd', "gemDiamond", 'F', Blocks.FURNACE,
 					'l', "ingotLandium")
 					.setRegistryName(LandCraftContent.breeder.getRegistryName()));
+			
+			event.getRegistry().register(new ShapedOreRecipe(LandCraftContent.temperature_detector.getRegistryName(),
+					LandCraftContent.temperature_detector,
+					"igi", "rFr", "hqh",
+					'i', "ingotIron", 'g', "ingotGold",
+					'r', LandCraftContent.redstone_component,
+					'F', Blocks.FURNACE, 'h', "ingotThorium",
+					'q', "gemQuartz")
+					.setRegistryName(LandCraftContent.temperature_detector.getRegistryName()));
 		}
 		
 		if (Config.player_mime) {

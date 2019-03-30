@@ -13,9 +13,11 @@ public class UpdateTEPot implements ITEUpdatePacket {
 	private FluidStack fs;
 	
 	public UpdateTEPot() {}
-	public UpdateTEPot(int energy, int progress, int time) {
+	public UpdateTEPot(int energy, int progress, int time, FluidStack fs) {
+		this.energy = energy;
 		this.progress = progress;
 		this.time = time;
+		this.fs = fs;
 	}
 	
 	public static IMessage onMessage(TEPot te, UpdateTEPot message, MessageContext ctx) {
@@ -23,6 +25,7 @@ public class UpdateTEPot implements ITEUpdatePacket {
 		te.setProgress(message.progress);
 		te.setClientTime(message.time);
 		te.setFluid(message.fs);
+		//System.out.println("TEEHEE! "+message.energy);
 		return null;
 	}
 

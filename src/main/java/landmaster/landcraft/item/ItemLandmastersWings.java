@@ -25,6 +25,7 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.*;
+import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.eventhandler.*;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -111,6 +112,7 @@ public class ItemLandmastersWings extends ItemEnergyBase {
 		final EntityPlayer player = event.player;
 		final ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 		boolean isCurrentlyWearingArmor = stack.getItem() instanceof ItemLandmastersWings;
+		boolean oldAllowFlying = player.capabilities.allowFlying, oldIsFlying = player.capabilities.isFlying;
 		if (!player.isCreative() && !player.isSpectator()
 				&& isCurrentlyWearingArmor) {
 			playersThatHadWornArmor.add(player);
@@ -134,7 +136,21 @@ public class ItemLandmastersWings extends ItemEnergyBase {
 			player.capabilities.allowFlying = true;
 		}
 		//if (player.ticksExisted % 5 == 0) System.out.println(player.capabilities.allowFlying);
-		player.sendPlayerAbilities();
+		if (player.capabilities.allowFlying != oldAllowFlying || player.capabilities.isFlying != oldIsFlying) {
+			player.sendPlayerAbilities();
+		}
+	}
+	
+	@SubscribeEvent
+    public static void breakSpeed(PlayerEvent.BreakSpeed e) {
+		EntityPlayer p = e.getEntityPlayer();
+		if (!p.onGround && p.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemLandmastersWings) {
+			float oldSpeed = e.getOriginalSpeed();
+			float newSpeed = e.getNewSpeed();
+			if (oldSpeed < newSpeed*5) {
+				e.setNewSpeed(newSpeed * 5);
+			}
+		}
 	}
 	
 	@SidedProxy(serverSide = "landmaster.landcraft.item.ItemLandmastersWings$Proxy", clientSide = "landmaster.landcraft.item.ItemLandmastersWings$ProxyClient")

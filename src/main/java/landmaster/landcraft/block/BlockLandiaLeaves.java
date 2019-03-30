@@ -43,6 +43,7 @@ public class BlockLandiaLeaves extends BlockLeaves implements IMetaBlockName {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return Blocks.LEAVES.isOpaqueCube(state);
@@ -55,12 +56,13 @@ public class BlockLandiaLeaves extends BlockLeaves implements IMetaBlockName {
 		return Blocks.LEAVES.getRenderLayer();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean shouldSideBeRendered(@Nonnull IBlockState blockState, @Nonnull IBlockAccess blockAccess,
 			@Nonnull BlockPos pos, @Nonnull EnumFacing side) {
 		// isOpaqueCube returns !leavesFancy to us. We have to fix the variable
 		// before calling super
-		this.leavesFancy = !Blocks.LEAVES.isOpaqueCube(blockState);
+		this.leavesFancy = !blockState.isOpaqueCube();
 		
 		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
